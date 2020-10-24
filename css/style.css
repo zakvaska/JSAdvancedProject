@@ -1,0 +1,12 @@
+button{
+    width: fit-content; 
+}
+.card{
+    width: 25rem;
+}
+#films{
+    padding: 0px;    
+}
+#films > div{
+    border: 0px;    
+}

@@ -5,8 +5,16 @@ button{
     width: 25rem;
 }
 #films{
-    padding: 0px;    
+    padding: 0px;   
+    cursor: pointer; 
 }
 #films > div{
     border: 0px;    
+}
+tr > td:nth-child(2){
+    text-align: center;
+    min-width: 200px;
+}
+.card-title{
+    margin-left: .75rem;
 }

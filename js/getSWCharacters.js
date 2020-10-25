@@ -38,6 +38,8 @@ HTMLButtonElement.prototype.unselect = function() {
     this.classList.add('btn-primary'); 
 };
 
+
+
 HTMLButtonElement.prototype.showFullInfo = function(e) {   
     birthyearValue.innerHTML = '';
     genderValue.innerHTML = '';
@@ -45,6 +47,10 @@ HTMLButtonElement.prototype.showFullInfo = function(e) {
     filmCount.innerHTML = '';
     homeworldValue.innerHTML = '';
     speciesValue.innerHTML = '';    
+    // birthyearValue.style.color = 'white';
+    // genderValue.style.color = 'white';
+    // homeworldValue.style.color = 'white';
+    // speciesValue.style.color = 'white';    
     currentPersonIndex = e.target.index;
     nameList.children[currentPersonIndex].focus();     
     console.log(currentPersonIndex);
@@ -67,7 +73,9 @@ HTMLButtonElement.prototype.showFullInfo = function(e) {
         // console.log(response.name)
         cardTitle.innerHTML = person.name;
         birthyearValue.innerHTML = person.birth_year;
+        // birthyearValue.style.color = '#212529';                                
         genderValue.innerHTML = person.gender;  
+        // genderValue.style.color = '#212529';
         filmList.textContent = '';
         filmCount.innerHTML = person.films.length;
         for (i = 0; i < person.films.length; i++) {
@@ -91,6 +99,7 @@ HTMLButtonElement.prototype.showFullInfo = function(e) {
         .then(homeworld => {
             // console.log(homeworld)
             homeworldValue.innerHTML = homeworld.name;
+            // homeworldValue.style.color = '#212529';
         });
         console.log(person.species)
         if (person.species.length) {
@@ -99,6 +108,7 @@ HTMLButtonElement.prototype.showFullInfo = function(e) {
             .then(species => {
                 // console.log(species);
                 speciesValue.innerHTML = species.name;
+                // speciesValue.style.color = '#212529';
             });
         };       
     });                             

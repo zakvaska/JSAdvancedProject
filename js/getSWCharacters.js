@@ -46,11 +46,7 @@ HTMLButtonElement.prototype.showFullInfo = function(e) {
     filmList.innerHTML = '';
     filmCount.innerHTML = '';
     homeworldValue.innerHTML = '';
-    speciesValue.innerHTML = '';    
-    // birthyearValue.style.color = 'white';
-    // genderValue.style.color = 'white';
-    // homeworldValue.style.color = 'white';
-    // speciesValue.style.color = 'white';    
+    speciesValue.innerHTML = '';       
     currentPersonIndex = e.target.index;
     nameList.children[currentPersonIndex].focus();     
     console.log(currentPersonIndex);
@@ -66,20 +62,19 @@ HTMLButtonElement.prototype.showFullInfo = function(e) {
         nextPersonBtn.disabled = false;
     };
     currentPersonURL = people[currentPersonIndex].url;  
-    fetch(currentPersonURL)
+    // console.log(currentPersonURL);
+    fetch(currentPersonURL.replace('http:', 'https:'))
     .then(response => response.json())  
     .then(person => {
         console.log(person);
         // console.log(response.name)
         cardTitle.innerHTML = person.name;
-        birthyearValue.innerHTML = person.birth_year;
-        // birthyearValue.style.color = '#212529';                                
+        birthyearValue.innerHTML = person.birth_year;                              
         genderValue.innerHTML = person.gender;  
-        // genderValue.style.color = '#212529';
         filmList.textContent = '';
         filmCount.innerHTML = person.films.length;
         for (i = 0; i < person.films.length; i++) {
-            fetch(person.films[i])
+            fetch(person.films[i].replace('http:', 'https:'))
             .then(response => response.json())
             .then(film => {                
                 // console.log(film);
@@ -94,21 +89,19 @@ HTMLButtonElement.prototype.showFullInfo = function(e) {
                 newCell.appendChild(newText);
             });
         };
-        fetch(person.homeworld)
+        fetch(person.homeworld.replace('http:', 'https:'))
         .then(response => response.json())
         .then(homeworld => {
             // console.log(homeworld)
             homeworldValue.innerHTML = homeworld.name;
-            // homeworldValue.style.color = '#212529';
         });
         console.log(person.species)
         if (person.species.length) {
-            fetch(person.species)
+            fetch(person.species.replace('http:', 'https:'))
             .then(response => response.json())
             .then(species => {
                 // console.log(species);
                 speciesValue.innerHTML = species.name;
-                // speciesValue.style.color = '#212529';
             });
         };       
     });                             
@@ -153,7 +146,7 @@ function loadSpecifiedPage(e) {
     currentPageButton.select();
    
     var pageNumber = e.target.innerHTML;
-    var url = `http://swapi.dev/api/people/?page=${pageNumber}`;
+    var url = `https://swapi.dev/api/people/?page=${pageNumber}`;
     loadPeople(url);
 };
 
@@ -181,8 +174,8 @@ function addListItems(response) {
     }; 
 };
 function loadPeople(url) {
-    console.log(url)
-    fetch(url)
+    console.log(url);    
+    fetch(url.replace('http:', 'https:'))
     .then(response => response.json())
     .then(response => {
         people = response.results;
